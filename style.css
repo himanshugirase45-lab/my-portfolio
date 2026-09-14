@@ -72,12 +72,26 @@ canvas {
 }
 
 .btn-secondary {
-    background-color: transparent;
+    background: rgba(12, 12, 14, 0.55);
     color: white;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(12px) saturate(130%);
+    -webkit-backdrop-filter: blur(12px) saturate(130%);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.9);
 }
 
 .btn-secondary:hover {
-    color: var(--primary-color);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(217, 72, 15, 0.35), 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.btn-secondary:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 3px;
 }
 
 .arrow {
@@ -926,30 +940,37 @@ img, canvas { max-width: 100%; }
 }
 
 /* === Content-credibility polish (appended, visual theme preserved) === */
-.hero { gap: 2rem; }
+.hero { gap: 2rem; flex-wrap: wrap; overflow: visible; }
 .hero-left, .hero-right { min-width: 0; max-width: 100%; }
-.hero-center { max-width: 100%; padding: 0 1rem; box-sizing: border-box; }
+.hero-left { flex: 1 1 320px; max-width: 560px; position: relative; z-index: 3; }
+.hero-right { flex: 1 1 280px; }
+.hero-center { max-width: 100%; padding: 0 1rem; box-sizing: border-box; overflow: visible; }
 .hero-title {
     flex-wrap: wrap;
     max-width: 100%;
+    overflow: visible;
     overflow-wrap: break-word;
-    font-size: clamp(2.5rem, 8.5vw, 9rem);
 }
 .title-left, .title-right { min-width: 0; max-width: 100%; }
+.stats-box, .stats-box-inner { max-width: min(100%, 560px); min-width: 0; overflow: visible; }
+.stats-box-inner h2 {
+    display: block;
+    max-width: 24ch;
+    white-space: normal;
+    overflow: visible;
+    overflow-wrap: break-word;
+    word-break: normal;
+    text-wrap: pretty;
+    line-height: 1.35;
+    padding-right: 0;
+    margin-right: 0;
+    font-size: clamp(1.35rem, 1.1rem + 1vw, 1.65rem);
+}
 .tags { flex-wrap: wrap; }
 .satisfaction-card p { color: rgba(255,255,255,0.88); }
 
-/* Projects: balanced 3-card grid, no empty fourth slot */
+/* Projects: balanced 2-card grid */
 .projects-grid { align-items: start; }
-@media (min-width: 769px) {
-    .projects-grid > .project-card:last-child:nth-child(odd) {
-        grid-column: 1 / -1;
-        max-width: 640px;
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
 
 /* Readability: stronger dark overlay for Projects + Contact, cinematic bg kept */
 .projects {
